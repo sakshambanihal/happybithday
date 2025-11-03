@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Rishabh!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                        url('https://images.unsplash.com/photo-1597848212624-e6d4bd4640d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: #ff6b6b;
+            text-shadow: 0 0 10px rgba(255, 107, 107, 0.5);
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: #feca57;
+        }
+
+        .input-section {
+            margin: 30px 0;
+        }
+
+        input {
+            padding: 15px 20px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            width: 200px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            margin-right: 10px;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        button:active {
+            transform: translateY(1px);
+        }
+
+        .countdown-display {
+            font-size: 8rem;
+            font-weight: bold;
+            margin: 30px 0;
+            color: #ff6b6b;
+            text-shadow: 0 0 20px rgba(255, 107, 107, 0.7);
+            height: 150px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.5s ease;
+        }
+
+        .message {
+            font-size: 2.5rem;
+            margin: 30px 0;
+            color: #feca57;
+            text-shadow: 0 0 10px rgba(254, 202, 87, 0.5);
+            opacity: 0;
+            transition: opacity 1s ease;
+            min-height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .show {
+            opacity: 1;
+        }
+
+        .balloons {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .balloon {
+            width: 60px;
+            height: 70px;
+            border-radius: 50%;
+            margin: 0 10px;
+            position: relative;
+            animation: float 5s infinite ease-in-out;
+        }
+
+        .balloon:before {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.7);
+        }
+
+        .balloon:nth-child(1) {
+            background: #ff6b6b;
+            animation-delay: 0s;
+        }
+
+        .balloon:nth-child(2) {
+            background: #48dbfb;
+            animation-delay: 0.5s;
+        }
+
+        .balloon:nth-child(3) {
+            background: #1dd1a1;
+            animation-delay: 1s;
+        }
+
+        .balloon:nth-child(4) {
+            background: #feca57;
+            animation-delay: 1.5s;
+        }
+
+        .balloon:nth-child(5) {
+            background: #ff9ff3;
+            animation-delay: 2s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .fireworks {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .countdown-display {
+                font-size: 5rem;
+            }
+            
+            .message {
+                font-size: 2rem;
+            }
+            
+            input, button {
+                width: 100%;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="fireworks" id="fireworks"></div>
+    
+    <div class="container">
+        <h1>Happy Birthday Rishabh!</h1>
+        <p class="subtitle">Enter your age to begin the celebration!</p>
+        
+        <div class="input-section">
+            <input type="number" id="ageInput" placeholder="Enter your age" min="1" max="100">
+            <button id="startBtn">Start Countdown</button>
+        </div>
+        
+        <div class="countdown-display" id="countdownDisplay"></div>
+        
+        <div class="message" id="message">Happy Birthday My Dear Friend Rishabh!</div>
+        
+        <div class="balloons">
+            <div class="balloon"></div>
+            <div class="balloon"></div>
+            <div class="balloon"></div>
+            <div class="balloon"></div>
+            <div class="balloon"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const ageInput = document.getElementById('ageInput');
+            const startBtn = document.getElementById('startBtn');
+            const countdownDisplay = document.getElementById('countdownDisplay');
+            const message = document.getElementById('message');
+            const fireworks = document.getElementById('fireworks');
+            
+            let countdownInterval;
+            let currentAge;
+            
+            startBtn.addEventListener('click', function() {
+                const age = parseInt(ageInput.value);
+                
+                if (isNaN(age) || age <= 0 || age > 100) {
+                    alert('Please enter a valid age between 1 and 100');
+                    return;
+                }
+                
+                // Reset previous countdown
+                clearInterval(countdownInterval);
+                message.classList.remove('show');
+                countdownDisplay.textContent = '';
+                
+                // Start new countdown
+                currentAge = age;
+                countdownDisplay.textContent = currentAge;
+                
+                countdownInterval = setInterval(function() {
+                    currentAge--;
+                    countdownDisplay.textContent = currentAge;
+                    
+                    // Add animation effect
+                    countdownDisplay.style.transform = 'scale(1.2)';
+                    setTimeout(() => {
+                        countdownDisplay.style.transform = 'scale(1)';
+                    }, 300);
+                    
+                    if (currentAge <= 0) {
+                        clearInterval(countdownInterval);
+                        countdownDisplay.textContent = '0';
+                        
+                        // Show message after a short delay
+                        setTimeout(() => {
+                            message.classList.add('show');
+                            createFireworks();
+                        }, 500);
+                    }
+                }, 1000);
+            });
+            
+            function createFireworks() {
+                // Clear previous fireworks
+                fireworks.innerHTML = '';
+                
+                // Create multiple fireworks
+                for (let i = 0; i < 50; i++) {
+                    setTimeout(() => {
+                        const firework = document.createElement('div');
+                        firework.classList.add('firework');
+                        firework.style.position = 'fixed';
+                        firework.style.left = Math.random() * 100 + 'vw';
+                        firework.style.top = Math.random() * 100 + 'vh';
+                        firework.style.width = '4px';
+                        firework.style.height = '4px';
+                        firework.style.borderRadius = '50%';
+                        firework.style.background = getRandomColor();
+                        firework.style.boxShadow = '0 0 10px ' + getRandomColor();
+                        firework.style.animation = `explode 1s forwards`;
+                        
+                        fireworks.appendChild(firework);
+                        
+                        // Remove firework after animation
+                        setTimeout(() => {
+                            firework.remove();
+                        }, 1000);
+                    }, i * 100);
+                }
+                
+                // Add CSS for explosion animation
+                if (!document.querySelector('#fireworkStyles')) {
+                    const style = document.createElement('style');
+                    style.id = 'fireworkStyles';
+                    style.textContent = `
+                        @keyframes explode {
+                            0% {
+                                transform: scale(1);
+                                opacity: 1;
+                            }
+                            100% {
+                                transform: scale(20);
+                                opacity: 0;
+                            }
+                        }
+                    `;
+                    document.head.appendChild(style);
+                }
+            }
+            
+            function getRandomColor() {
+                const colors = ['#ff6b6b', '#48dbfb', '#1dd1a1', '#feca57', '#ff9ff3', '#54a0ff'];
+                return colors[Math.floor(Math.random() * colors.length)];
+            }
+            
+            // Add some initial animation to the countdown display
+            countdownDisplay.style.opacity = '0';
+            setTimeout(() => {
+                countdownDisplay.style.transition = 'opacity 1s ease';
+                countdownDisplay.style.opacity = '1';
+            }, 500);
+        });
+    </script>
+</body>
+</html>
